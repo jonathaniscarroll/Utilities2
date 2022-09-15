@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class FollowTransform : MonoBehaviour
 {
-	public Transform TransformToFollow;
-	public Transform TransformToMove;
+	[field:SerializeField]
+	public Transform TransformToFollow{get;set;}
+	[field:SerializeField]
+	public Transform TransformToMove{get;set;}
 	
 	void Update(){
+		if(TransformToFollow!=null&&TransformToMove!=null)
 		TransformToMove.position = TransformToFollow.position;
 	}
 }
