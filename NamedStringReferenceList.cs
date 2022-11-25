@@ -18,13 +18,15 @@ public class NamedStringReferenceList : ScriptableObject
 	
 	public StringStringDictionaryEvent DictionaryEvent;
 	
+	public Dictionary<string,string> Dictionary;
+	
 	public void SaveToDictionary(){
 		//Debug.Log("save dicationary");
-		Dictionary<string,string> dictionary = new Dictionary<string, string>();
+		Dictionary = new Dictionary<string, string>();
 		foreach(NamedStringReference namedString in NamedStringReferences){
-			dictionary.Add(namedString.Name,namedString.StringReference);
+			Dictionary.Add(namedString.Name,namedString.StringReference);
 		}
-		DictionaryEvent.Invoke(dictionary);
+		DictionaryEvent.Invoke(Dictionary);
 	}
 	
 	public void SetValues(Dictionary<string,string> input){
