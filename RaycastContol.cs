@@ -23,11 +23,13 @@ public class RaycastContol : MonoBehaviour
 	}
 	
 	public void SendRaycast(){
-		
-		if(EventSystem.current.IsPointerOverGameObject()){
-			//Debug.Log("sending RC hit UI");
-			return;
+		if(EventSystem.current!=null){
+			if(EventSystem.current.IsPointerOverGameObject()){
+				//Debug.Log("sending RC hit UI");
+				return;
+			}	
 		}
+		
 		if(Input.touchCount > 0){
 			if(EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)){
 				return;
@@ -54,7 +56,7 @@ public class RaycastContol : MonoBehaviour
 				raycast.onRaycasted.PositionEvent.Invoke(hit.point);
 				raycast.onRaycasted.GameObjectPositionEvent.Invoke(hit.collider.gameObject,hit.point);
 				OutputRaycastPoint.Invoke(hit.point);
-				//Debug.Log("hit " + name,hit.collider.gameObject);
+				Debug.Log("hit " + name,hit.collider.gameObject);
 				//onRaycasted.Invoke();
 			}
 		}

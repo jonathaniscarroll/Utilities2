@@ -20,4 +20,5 @@ public class OutputGameObjectTransform : MonoBehaviour
 	public void Output(){
 		OutputTransform.Invoke(GameObjectToOutput.transform);
 	}
+	
 }

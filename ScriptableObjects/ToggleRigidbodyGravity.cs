@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Game Object Function/Toggle Rigidbody")]
 public class ToggleRigidbodyGravity : GameObjectFunction
 {
+	[field:SerializeField]
 	public bool stateToSet{
 		get;set;
 	}
