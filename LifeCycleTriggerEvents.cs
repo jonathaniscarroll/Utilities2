@@ -11,7 +11,7 @@ public class LifeCycleTriggerEvents : MonoBehaviour
 		public TriggerTime trigger;
 		public UnityEvent eventToTrigger;
 	}
-	public enum TriggerTime {Start,Awake,Disable,Update,FixedUpdate,Quit};
+	public enum TriggerTime {Start,Awake,Disable,Update,FixedUpdate,Quit,OnEnable,OnDisable};
 	public List<TriggerEvent> triggerEvents;
 	
 	void Start(){
@@ -48,6 +48,20 @@ public class LifeCycleTriggerEvents : MonoBehaviour
 	void OnApplicationQuit(){
 		foreach(TriggerEvent te in triggerEvents){
 			if(te.trigger==TriggerTime.Quit){
+				te.eventToTrigger.Invoke();
+			}	
+		}
+	}
+	void OnEnable(){
+		foreach(TriggerEvent te in triggerEvents){
+			if(te.trigger==TriggerTime.OnEnable){
+				te.eventToTrigger.Invoke();
+			}	
+		}
+	}
+	void OnDisable(){
+		foreach(TriggerEvent te in triggerEvents){
+			if(te.trigger==TriggerTime.OnDisable){
 				te.eventToTrigger.Invoke();
 			}	
 		}
