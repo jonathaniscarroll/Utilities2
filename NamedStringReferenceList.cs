@@ -7,6 +7,11 @@ using System.Linq;
 	public class NamedStringReference{
 		public string Name;
 		public StringReference StringReference;
+		public NamedStringReference(string _name,string _value){
+			Name = _name;
+			StringReference.Value = _value;
+			StringReference.UseConstant = true;
+		}
 	}
 
 [CreateAssetMenu]

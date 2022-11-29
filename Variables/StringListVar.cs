@@ -27,6 +27,7 @@ public class StringListVar : ScriptableObject
 	
 	public StringListEvent StringListEvent;
 	public StringEvent IterateStringListOutput;
+	public StringEvent OutputSingle;
 	
 	public void Add(string input){
 		Value.Add(input);
@@ -53,6 +54,9 @@ public class StringListVar : ScriptableObject
 	}
 	public void ClearList(){
 		Value = new List<string>();
+	}
+	public void OutputItem(int item){
+		OutputSingle.Invoke(Value[item]);
 	}
 	
 }
