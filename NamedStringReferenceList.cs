@@ -9,6 +9,7 @@ using System.Linq;
 		public StringReference StringReference;
 		public NamedStringReference(string _name,string _value){
 			Name = _name;
+			StringReference = new StringReference();
 			StringReference.Value = _value;
 			StringReference.UseConstant = true;
 		}
