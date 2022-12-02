@@ -12,9 +12,11 @@ public class StringVar : ScriptableObject
 		set{
 			_value = value;
 			Debug.Log("changed " + name + " " + _value);
+			if(OnChange!=null)
 			OnChange.Invoke(_value);
 		}
 	}
+	
 	
 	public string InitialValue;
 	public bool UseInitialValue;

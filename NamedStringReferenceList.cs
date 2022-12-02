@@ -6,12 +6,17 @@ using System.Linq;
 	[System.Serializable]
 	public class NamedStringReference{
 		public string Name;
-		public StringReference StringReference;
+		public StringReference StringRef;
 		public NamedStringReference(string _name,string _value){
 			Name = _name;
-			StringReference = new StringReference();
-			StringReference.Value = _value;
-			StringReference.UseConstant = true;
+			StringRef = new StringReference();
+			StringRef.Value = _value;
+			StringRef.UseConstant = true;
+		}
+		public NamedStringReference(string _name,StringReference _stringRef){
+			Name = _name;
+			StringRef = _stringRef;
+			
 		}
 	}
 
@@ -30,7 +35,7 @@ public class NamedStringReferenceList : ScriptableObject
 		//Debug.Log("save dicationary");
 		Dictionary = new Dictionary<string, string>();
 		foreach(NamedStringReference namedString in NamedStringReferences){
-			Dictionary.Add(namedString.Name,namedString.StringReference);
+			Dictionary.Add(namedString.Name,namedString.StringRef);
 		}
 		DictionaryEvent.Invoke(Dictionary);
 	}
@@ -39,7 +44,7 @@ public class NamedStringReferenceList : ScriptableObject
 		foreach(NamedStringReference nsr in NamedStringReferences){
 			if(input.ContainsKey(nsr.Name)){
 				//Debug.Log(input[nsr.Name] + " " + nsr.StringReference.Value);
-				nsr.StringReference.Value = input[nsr.Name];
+				nsr.StringRef.Value = input[nsr.Name];
 			}
 		}
 	}
