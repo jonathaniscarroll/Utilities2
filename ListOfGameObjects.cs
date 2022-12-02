@@ -25,11 +25,13 @@ public class ListOfGameObjects : MonoBehaviour
 		gameObjectListEvent.Invoke(GameObjectList);
 	}
 	public void CountList(){
-		//Debug.Log("count " + GameObjectList.Count);
+		Debug.Log("count " + GameObjectList.Count);
 		OutputCount.Invoke(GameObjectList.Count);
 	}
 	
 	public GameObjectEvent IteratedGameObject;
+	public GameObjectEvent OnAdded;
+	public GameObjectEvent OnRemoved;
 	public UnityEvent OnIterationComplete;
 	public IntEvent OutputCount;
 	
@@ -81,6 +83,22 @@ public class ListOfGameObjects : MonoBehaviour
 	
 	public void Add(GameObject input){
 		GameObjectList.Add(input);
+		OnAdded.Invoke(input);
+	}
+	public void Remove(GameObject input){
+		if(GameObjectList.Contains(input)){
+			GameObjectList.Remove(input);
+			OnRemoved.Invoke(input);
+		}
+	}
+	
+	public void RemoveLastInList(){
+		if(GameObjectList.Count>0){
+			GameObject output = GameObjectList[GameObjectList.Count-1];
+			Debug.Log(output);
+			GameObjectList.Remove(output);
+			OnRemoved.Invoke(output);
+		}
 	}
 	
 	public TransformListEvent TransformListEvent;
