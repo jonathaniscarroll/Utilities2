@@ -6,13 +6,16 @@ public class MicrophoneInput : MonoBehaviour
 {
 	#if UNITY_IOS || UNITY_ANDROID || UNITY_EDITOR || UNITY_STANDALONE
 	void Start(){
+		List<string> devices = new List<string>();
 		int s =0;
 		foreach(string i in Microphone.devices){
 			Debug.Log(s + i);
+			devices.Add(i);
 			s++;
 		}
-		
+		OutputDevices.Invoke(devices);
 	}
+	
 	[SerializeField]
 	private int Device;
 	public int device{
@@ -34,6 +37,7 @@ public class MicrophoneInput : MonoBehaviour
 			length = value;
 		}
 	}
+	public StringListEvent OutputDevices;
 
 	public AudioClipEvent eventOnRecord;
 	
