@@ -56,6 +56,7 @@ public class StringListVar : ScriptableObject
 		Value = new List<string>();
 	}
 	public void OutputItem(int item){
+		Debug.Log(Value[item]);
 		OutputSingle.Invoke(Value[item]);
 	}
 	
