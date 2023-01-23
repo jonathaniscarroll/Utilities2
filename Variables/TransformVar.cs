@@ -13,8 +13,12 @@ public class TransformVar : ScriptableObject
 			return _value;
 		} set{
 			_value = value;
+			Debug.Log(_value);
 			OnChange.Invoke(_value);
 		}
 	}
 	public TransformEvent OnChange;
+	public void OutputTransform(){
+		OnChange.Invoke(Value);
+	}
 }
