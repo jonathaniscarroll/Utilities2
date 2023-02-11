@@ -46,7 +46,6 @@ public class MicrophoneInput : MonoBehaviour
 		//AudioSource audio = GetComponent<AudioSource>();
 		clip = Microphone.Start(Microphone.devices[device], true, Length, 22050);
 
-		while (!(Microphone.GetPosition(null) > 0)) { }
 		//Debug.Log("start playing... position is " + Microphone.GetPosition(null));
 		eventOnRecord.Invoke(clip);
 		Debug.Log(Microphone.devices[device]);
