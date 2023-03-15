@@ -26,7 +26,7 @@ public class LifeCycleTriggerEvents : MonoBehaviour
 	void Awake(){
 		foreach(TriggerEvent te in triggerEvents){
 			if(te.trigger==TriggerTime.Awake){
-				Debug.Log("invoking");
+				Debug.Log("invoking",gameObject);
 				te.eventToTrigger.Invoke();
 			}	
 		}

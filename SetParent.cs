@@ -26,4 +26,8 @@ public class SetParent : MonoBehaviour
 	public void Set(){
 		TransformToSet.parent = Parent;
 	}
+	
+	public void UnSet(){
+		TransformToSet.parent = null;
+	}
 }

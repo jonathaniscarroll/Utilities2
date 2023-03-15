@@ -13,7 +13,7 @@ public class TransformVar : ScriptableObject
 			return _value;
 		} set{
 			_value = value;
-			Debug.Log(_value);
+			Debug.Log(_value,_value.gameObject);
 			OnChange.Invoke(_value);
 		}
 	}

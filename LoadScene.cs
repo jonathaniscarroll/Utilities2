@@ -48,9 +48,15 @@ public class LoadScene : MonoBehaviour
 				//Change the Text to show the Scene is ready
 				OnLoadComplete.Invoke(scene +" loaded");
 				//Wait to you press the space key to activate the Scene
-				if (Activate)
+				if (Activate){
 					//Activate the Scene
+					Debug.Log("activatin");
 					asyncOperation.allowSceneActivation = true;
+					//SceneManager.SetActiveScene( SceneManager.GetSceneByName(scene));
+					yield return new WaitForEndOfFrame();
+					
+				}
+					
 			}
 
 			yield return new WaitForEndOfFrame();

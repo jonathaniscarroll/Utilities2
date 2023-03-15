@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Variables/String")]
 public class StringVar : ScriptableObject
 {
+	[TextArea(3,10)]
 	[SerializeField]
 	private string _value;
 	public string Value{

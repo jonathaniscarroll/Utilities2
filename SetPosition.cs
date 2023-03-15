@@ -20,6 +20,7 @@ public class SetPosition : MonoBehaviour
 		if(LocalPosition){
 			TargetTransform.transform.localPosition = input + Offset;
 		} else {
+			Debug.Log("setting position",gameObject);
 			TargetTransform.transform.position = input + Offset;	
 		}
 		OnMove.Invoke();
