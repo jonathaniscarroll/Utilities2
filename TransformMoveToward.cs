@@ -26,6 +26,7 @@ public class TransformMoveToward : MonoBehaviour
 			speed = value;
 		}
 	}
+	public Vector3 Modifier = Vector3.one;
 	[SerializeField]
 	private float speed = 1;
 	public UnityEvent OnDestination;
@@ -34,7 +35,8 @@ public class TransformMoveToward : MonoBehaviour
 		if(TargetToMove==null||TargetToMoveToward==null){
 			return;
 		}
-		TargetToMove.position = Vector3.MoveTowards(TargetToMove.position,TargetToMoveToward.position,Speed*Time.deltaTime);
+		Vector3 target = new Vector3(TargetToMoveToward.position.x*Modifier.x,TargetToMoveToward.position.y*Modifier.y,TargetToMoveToward.position.z*Modifier.z);
+		TargetToMove.position = Vector3.MoveTowards(TargetToMove.position,target,Speed*Time.deltaTime);
 		if(Vector3.Distance(TargetToMove.position,TargetToMoveToward.position)<0.1){
 			OnDestination.Invoke();
 		}
