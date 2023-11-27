@@ -5,6 +5,7 @@ using UnityEngine;
 public class LookAtTarget : MonoBehaviour
 {
 	public Vector3 Mod = Vector3.one;
+	[field:SerializeField]
 	public Transform Target{
 		get;set;
 	}
@@ -13,9 +14,12 @@ public class LookAtTarget : MonoBehaviour
 	
 	void Start(){
 		if(!string.IsNullOrEmpty(TargetTag)){
-			Target = GameObject.FindGameObjectWithTag(TargetTag).transform;
+			GameObject targetGO;
+			if(targetGO = GameObject.FindGameObjectWithTag(TargetTag))
+				Target = targetGO.transform;
 		}
 	}
+	public float speed = .1f;
 	
 	void Update(){
 		//transform.LookAt(Target.position);
@@ -30,7 +34,13 @@ public class LookAtTarget : MonoBehaviour
 			//dir.y = 0;
 			Quaternion rot = Quaternion.LookRotation(dir);
 			// slerp to the desired rotation over time
-			transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime);
+			transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime*speed);
+		} else {
+			if(!string.IsNullOrEmpty(TargetTag)){
+				GameObject targetGO;
+				if(targetGO = GameObject.FindGameObjectWithTag(TargetTag))
+				Target = targetGO.transform;
+			}
 		}
 		
 	}

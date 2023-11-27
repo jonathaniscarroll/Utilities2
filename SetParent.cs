@@ -11,6 +11,7 @@ public class SetParent : MonoBehaviour
 			return _transformToSet;
 		} set{
 			_transformToSet = value;
+			originalParent = _transformToSet.parent;
 		}
 	}
 	[SerializeField]
@@ -23,11 +24,30 @@ public class SetParent : MonoBehaviour
 		}
 	}
 	
+	private Transform originalParent;
+	
+	void Start(){
+		if(TransformToSet !=null)
+		originalParent = TransformToSet.parent;
+	}
 	public void Set(){
-		TransformToSet.parent = Parent;
+		if(TransformToSet!=null)
+			TransformToSet.parent = Parent;
+		else
+			Debug.Log("null");
 	}
 	
 	public void UnSet(){
-		TransformToSet.parent = null;
+		if(TransformToSet!=null)
+			TransformToSet.parent = null;
+		else
+			Debug.Log("null");
+	}
+	
+	public void Reset(){
+		if(TransformToSet!=null)
+			TransformToSet.parent = originalParent;
+		else
+			Debug.Log("null");
 	}
 }

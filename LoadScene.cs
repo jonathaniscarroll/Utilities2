@@ -46,7 +46,10 @@ public class LoadScene : MonoBehaviour
 			if (asyncOperation.progress >= 0.9f)
 			{
 				//Change the Text to show the Scene is ready
-				OnLoadComplete.Invoke(scene +" loaded");
+				if(!Activate){
+					OnLoadComplete.Invoke(scene +" loaded");	
+				}
+				
 				//Wait to you press the space key to activate the Scene
 				if (Activate){
 					//Activate the Scene

@@ -9,4 +9,7 @@ public class OutputGameObjectName : MonoBehaviour
 		//Debug.Log(gameObject.name,gameObject);
 		OutputNameString.Invoke(input.name);
 	}
+	public void InputTransform(Transform input){
+		OutputNameString.Invoke(input.gameObject.name);
+	}
 }

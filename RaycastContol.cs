@@ -8,6 +8,7 @@ public class RaycastContol : MonoBehaviour
 {
 	
 	public Transform TransformToRaycastFrom;
+	public Vector3 TransformDirection;
 	public Camera CameraToRaycastFrom;
 	public Vector3Event OutputRaycastPoint;
 	public RaycastEvent onRaycasted;
@@ -25,7 +26,7 @@ public class RaycastContol : MonoBehaviour
 	public void SendRaycast(){
 		if(EventSystem.current!=null){
 			if(EventSystem.current.IsPointerOverGameObject()){
-				//Debug.Log("sending RC hit UI");
+				Debug.Log("sending RC hit UI");
 				return;
 			}	
 		}
@@ -40,7 +41,7 @@ public class RaycastContol : MonoBehaviour
 		//Physics.Raycast (cam.position, cam.forward, hit, 500)
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		if(TransformToRaycastFrom!=null){
-			ray = new Ray(TransformToRaycastFrom.position, TransformToRaycastFrom.forward);
+			ray = new Ray(TransformToRaycastFrom.position, TransformToRaycastFrom.position + TransformDirection);
 		}
 		if(CameraToRaycastFrom!=null){
 			ray = CameraToRaycastFrom.ScreenPointToRay(Input.mousePosition);
@@ -48,7 +49,7 @@ public class RaycastContol : MonoBehaviour
 		
 		if(Physics.Raycast (ray, out hit,Mathf.Infinity,LayerMask))
 		{
-			//Debug.Log("sending RC hit " + hit.transform.gameObject,hit.transform.gameObject);
+			Debug.Log("sending RC hit " + hit.transform.gameObject,hit.transform.gameObject);
 			RaycastContol raycast;
 			if(raycast=hit.collider.GetComponent<RaycastContol>())
 			{
