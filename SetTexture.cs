@@ -6,6 +6,6 @@ public class SetTexture : MonoBehaviour
 {
 	public MeshRenderer MeshRenderer;
 	public void Input(Texture texture){
-		MeshRenderer.sharedMaterial.mainTexture = texture;
+		MeshRenderer.material.mainTexture = texture;
 	}
 }
